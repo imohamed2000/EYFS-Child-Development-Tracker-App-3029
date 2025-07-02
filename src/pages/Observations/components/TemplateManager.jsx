@@ -4,7 +4,7 @@ import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../../components/common/SafeIcon';
 import { observationStatements } from '../../../data/commentBank';
 
-const { FiPlus, FiEdit3, FiTrash2, FiSave, FiX, FiCopy, FiEye, FiFileText } = FiIcons;
+const { FiPlus, FiEdit3, FiTrash2, FiSave, FiX, FiCopy, FiEye, FiFileText, FiUpload, FiDownload } = FiIcons;
 
 const TemplateManager = () => {
   const [templates, setTemplates] = useState(observationStatements);
