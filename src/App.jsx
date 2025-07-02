@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Children from './pages/Children/Children';
 import ChildProfile from './pages/Children/ChildProfile';
 import Observations from './pages/Observations/Observations';
+import AdminDashboard from './pages/Observations/AdminDashboard';
 import CreateObservation from './pages/Observations/CreateObservation';
 import LearningJourneys from './pages/LearningJourneys/LearningJourneys';
 import LearningJourneyDetail from './pages/LearningJourneys/LearningJourneyDetail';
@@ -90,6 +91,14 @@ const AppContent = () => {
             element={
               <ProtectedRoute requiredPermission={PERMISSIONS.OBSERVATIONS_VIEW}>
                 <Observations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="observations/admin"
+            element={
+              <ProtectedRoute requiredPermission={PERMISSIONS.SETTINGS_SYSTEM}>
+                <AdminDashboard />
               </ProtectedRoute>
             }
           />

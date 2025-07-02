@@ -5,12 +5,15 @@ import * as FiIcons from 'react-icons/fi';
 import SafeIcon from '../../components/common/SafeIcon';
 import EditObservationModal from '../../components/Observation/EditObservationModal';
 import { useApp } from '../../context/AppContext';
+import { useAuth } from '../../context/AuthContext';
+import { PERMISSIONS } from '../../data/roles';
 import { format } from 'date-fns';
 
-const { FiPlus, FiSearch, FiFilter, FiCalendar, FiClock, FiEye, FiEdit, FiTrash2, FiShare2, FiImage, FiVideo } = FiIcons;
+const { FiPlus, FiSearch, FiFilter, FiCalendar, FiClock, FiEye, FiEdit, FiTrash2, FiShare2, FiImage, FiVideo, FiSettings } = FiIcons;
 
 const Observations = () => {
   const { observations, children, dispatch } = useApp();
+  const { hasPermission } = useAuth();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedChild, setSelectedChild] = useState('all');
@@ -68,7 +71,16 @@ const Observations = () => {
               <span>📤 {observations.filter(obs => obs.sharedWithParents).length} Shared</span>
             </div>
           </div>
-          <div className="mt-4 sm:mt-0">
+          <div className="mt-4 sm:mt-0 flex items-center space-x-3">
+            {hasPermission(PERMISSIONS.SETTINGS_SYSTEM) && (
+              <Link
+                to="/observations/admin"
+                className="inline-flex items-center px-4 py-2 bg-white bg-opacity-20 text-white rounded-lg hover:bg-opacity-30 transition-colors"
+              >
+                <SafeIcon icon={FiSettings} className="w-5 h-5 mr-2" />
+                Admin
+              </Link>
+            )}
             <Link
               to="/observations/create"
               className="inline-flex items-center px-6 py-3 bg-white text-primary-600 rounded-lg hover:bg-gray-50 transition-colors font-medium"
